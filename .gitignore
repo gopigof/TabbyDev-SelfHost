@@ -1,0 +1,7 @@
+# Ignore .env file
+.env
+
+
+# IDE directories
+.idea/
+.vscode/

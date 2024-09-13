@@ -1,0 +1,32 @@
+services:
+  tabby:
+    restart: always
+    image: tabbyml/tabby
+    command: serve --model DeepseekCoder-6.7B --device cuda
+    volumes:
+      - "$HOME/.tabby:/data"
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    hostname: tabby.local
+    networks:
+      tabby-net:
+        aliases:
+          - tabby.local
+
+networks:
+  tabby-net:
+
+#    networks:
+#      tabby-net:
+#        - aliases:
+#            - tabby.local
+#
+#networks:
+#    tabby-net:
